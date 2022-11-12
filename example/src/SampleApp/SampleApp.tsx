@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 
 import { getAnalytics } from "firebase/analytics";
 import { User as FirebaseUser } from "firebase/auth";
@@ -27,9 +27,12 @@ import { CustomLoginView } from "./CustomLoginView";
 import {
     SampleCollectionActions
 } from "./collection_actions/SampleCollectionActions";
+import { connectFirestoreEmulator, Firestore } from "firebase/firestore";
 
 function SampleApp() {
-
+    const firestoreRef = useRef<Firestore>();
+    const firestore = firestoreRef.current;
+    
     const githubLink = (
         <Tooltip
             title="See this project on GitHub. This button is only present in this demo">
@@ -54,7 +57,9 @@ function SampleApp() {
 
     const onFirebaseInit = (config: Object) => {
         // Just calling analytics enables screen tracking
-        getAnalytics();
+        //getAnalytics();
+        //console.log(config,firestore)
+        //if(firestore) connectFirestoreEmulator(firestore, 'localhost', 8080);
     };
 
     const myAuthenticator: Authenticator<FirebaseUser> = useCallback(async ({

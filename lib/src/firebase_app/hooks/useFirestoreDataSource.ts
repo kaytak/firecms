@@ -25,6 +25,7 @@ import {
 import {
     collection as collectionClause,
     CollectionReference,
+    connectFirestoreEmulator,
     deleteDoc,
     doc,
     DocumentReference,
@@ -77,6 +78,7 @@ export function useFirestoreDataSource({
     useEffect(() => {
         if (!firebaseApp) return;
         firestoreRef.current = getFirestore(firebaseApp);
+        connectFirestoreEmulator(firestoreRef.current, 'localhost', 8080);
     }, [firebaseApp]);
 
     /**

@@ -2,7 +2,9 @@
 /src/firebase_config.ts
 .firebaserc
 .firebase
-
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
 # dependencies
 /node_modules
 /.pnp
